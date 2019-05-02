@@ -8,12 +8,11 @@ const CircleContainer = styled.div`
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  background-color: rgb(22, 157, 217);
+  background-color: ${props => (props.selected ? "#D91667" : "#1698d9")};
   color: white;
   font-size: 42px;
   text-align: center;
   line-height: 80px;
-
 `;
 
 const Weight = styled.p`
@@ -27,8 +26,8 @@ const Dimension = styled.span`
   font-size: 20px;
 `;
 
-const Circle = ({ eatWeight }) => (
-  <CircleContainer>
+const Circle = ({ eatWeight, isSelectedCard }) => (
+  <CircleContainer selected={isSelectedCard}>
     <Weight>
       {eatWeight}
       <Dimension>кг</Dimension>
