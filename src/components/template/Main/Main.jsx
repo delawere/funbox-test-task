@@ -17,8 +17,9 @@ const MainContainer = styled.main`
 `;
 
 const CardsSection = styled.div`
-  width: 1120px;
+  width: 1280px;
   margin: 0 auto;
+  margin-top: 42px;
   display: flex;
   justify-content: space-between;
 `;
