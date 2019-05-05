@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const CircleContainer = styled.div`
+  z-index: 10;
   position: absolute;
   right: 20px;
   bottom: 16px;

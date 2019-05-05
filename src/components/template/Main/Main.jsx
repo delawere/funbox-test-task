@@ -14,6 +14,7 @@ const MainContainer = styled.main`
   align-content: center;
   background-color: black;
   background-image: url("./pattern.png");
+  overflow: hidden;
 `;
 
 const CardsSection = styled.div`
@@ -26,6 +27,7 @@ const CardsSection = styled.div`
 
 const data = [
   {
+    disabled: false,
     eatName: "фуа-гра",
     portionCount: 10,
     mouseCount: 1,
@@ -33,6 +35,7 @@ const data = [
     eatWeight: "0,5"
   },
   {
+    disabled: false,
     eatName: "рыбой",
     portionCount: 40,
     mouseCount: 2,
@@ -40,6 +43,7 @@ const data = [
     eatWeight: "2"
   },
   {
+    disabled: true,
     eatName: "курой",
     portionCount: 100,
     mouseCount: 5,
@@ -54,6 +58,7 @@ const Main = () => (
     <CardsSection>
       {data.map(card => (
         <Card
+          disabled={card.disabled}
           eatName={card.eatName}
           portionCount={card.portionCount}
           mouseCount={card.mouseCount}
