@@ -2,14 +2,16 @@ import React from "react";
 import styled from "styled-components";
 
 const TitleContainer = styled.h1`
+  font-family: Exo;
+  margin: 0;
+  padding: 0;
   font-size: 36px;
-  color: rgb(208, 154, 154);
-  font-weight: 200;
+  color: #fff;
+  font-weight: 100;
   text-align: center;
+  line-height: 42px;
 `;
 
-const Title = () => (
-    <TitleContainer>Ты сегодня покормил кота?</TitleContainer>
-);
+const Title = () => <TitleContainer>Ты сегодня покормил кота?</TitleContainer>;
 
 export default Title;

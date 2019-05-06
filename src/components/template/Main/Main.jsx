@@ -12,15 +12,16 @@ const MainContainer = styled.main`
   flex-direction: column;
   align-items: center;
   align-content: center;
+  justify-content: center;
   background-color: black;
   background-image: url("./pattern.png");
   overflow: hidden;
 `;
 
 const CardsSection = styled.div`
-  width: 1280px;
+  width: 1120px;
   margin: 0 auto;
-  margin-top: 42px;
+  margin-top: 68px;
   display: flex;
   justify-content: space-between;
 `;

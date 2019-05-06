@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import styled from "styled-components";
 import Circle from "../../molecules/Circle/Circle";
 import Footer from "../../molecules/Footer/Footer";
@@ -78,24 +78,31 @@ const CardEatName = styled.p`
   padding: 0;
   margin-top: 22px;
   font-size: 24px;
+  font-family: Trebuchet MS Bold;
 `;
 
 const CardEatInfo = styled.div`
   margin: 0;
   padding: 0;
-  margin-top: 24px;
+  margin-top: 43px;
   font-size: 14px;
+  line-height: 16px;
   color: #666;
-  white-space: pre-line;
 `;
 
 const CardEatDesc = styled.p`
   z-index: 3;
   position: absolute;
   font-size: 16px;
-  color: #d8d8d8;
+  color: ${props => (props.hover && props.selected ? "#D91667" : "#d8d8d8")};
   top: -37px;
   left: 48px;
+`;
+
+const Paragraph = styled.p`
+  margin: 0;
+  padding: 0;
+  line-height: inherit;
 `;
 
 const Border = styled.svg`
@@ -114,6 +121,11 @@ const FooterTitles = {
   }
 };
 
+const HeaderTitles = {
+  default: "Сказочные заморские яства",
+  selected: "Котэ не одобряет?"
+};
+
 const getFooterTitle = (isSelected, isDisabled, eatName) => {
   if (!isSelected && !isDisabled) {
     return FooterTitles.default;
@@ -123,10 +135,8 @@ const getFooterTitle = (isSelected, isDisabled, eatName) => {
     return `Печалька, с ${eatName} закончился`;
   }
 
-  let selectedTitle;
-
   if (isSelected) {
-    debugger;
+    let selectedTitle;
     switch (eatName) {
       case "фуа-гра":
         selectedTitle = FooterTitles.selected.foieGras;
@@ -146,6 +156,19 @@ const getFooterTitle = (isSelected, isDisabled, eatName) => {
   }
 };
 
+const getDeclOfNumber = (number, titles) => {
+  const cases = [2, 0, 1, 1, 1, 2];
+  return titles[
+    number % 100 > 4 && number % 100 < 20
+      ? 2
+      : cases[number % 10 < 5 ? number % 10 : 5]
+  ];
+};
+
+const onClickCard = (action, disabled, activeSelect) => {
+  if (!disabled) action(!activeSelect);
+};
+
 const Card = ({
   disabled,
   eatName,
@@ -155,41 +178,66 @@ const Card = ({
   eatWeight
 }) => {
   const [isSelectedCard, setSelectOnCard] = useState(false);
+  const [isActiveSelectOnCard, setActiveSelect] = useState(false);
+  const [isHover, setHover] = useState(false);
   const footerTitle = getFooterTitle(isSelectedCard, disabled, eatName);
   return (
-    <CardWrapper>
-      <CardContainer
-        onClick={() => {
-          if (!disabled) setSelectOnCard(!isSelectedCard);
-        }}
-        selected={isSelectedCard}
-        disabled={disabled}
-      >
+    <CardWrapper
+      onMouseOut={() => {
+        setHover(false);
+        if (isSelectedCard) {
+          setActiveSelect(true);
+        } else {
+          setActiveSelect(false);
+        }
+      }}
+      onMouseOver={() => setHover(true)}
+      onClick={() => {
+        onClickCard(setSelectOnCard, disabled, isActiveSelectOnCard);
+      }}
+    >
+      <CardContainer selected={isActiveSelectOnCard} disabled={disabled}>
         <Border width="440" height="440">
           <path
             d="M2,80 v-20 l40,-37 l266,0 a10,10 0 0 1 10,10 v32"
             fill="none"
             stroke={
-              disabled ? "#B3B3B3" : isSelectedCard ? "#D91667" : "#2ea8e6"
+              disabled
+                ? "#B3B3B3"
+                : isActiveSelectOnCard
+                ? "#D91667"
+                : "#2ea8e6"
             }
             stroke-width="4"
           />
         </Border>
         <Filter disabled={disabled} />
-        <CardEatDesc>Сказочные заморские яства</CardEatDesc>
+        <CardEatDesc hover={isHover} selected={isActiveSelectOnCard}>
+          {isHover && isActiveSelectOnCard
+            ? HeaderTitles.selected
+            : HeaderTitles.default}
+        </CardEatDesc>
         <CardTitle>Нямушка</CardTitle>
         <CardEatName>c {eatName}</CardEatName>
         <CardEatInfo>
-          <p>{portionCount} порций</p>
-          <p>{mouseCount} мышей в подарок</p>
-          <p>{additional}</p>
+          <Paragraph>{portionCount} порций</Paragraph>
+          <Paragraph>
+            {mouseCount}{" "}
+            {getDeclOfNumber(mouseCount, ["мышь", "мыши", "мышей"])} в подарок
+          </Paragraph>
+          <Paragraph>{additional}</Paragraph>
         </CardEatInfo>
-        <Circle eatWeight={eatWeight} isSelectedCard={isSelectedCard} />
+        <Circle
+          eatWeight={eatWeight}
+          selected={isActiveSelectOnCard}
+          disabled={disabled}
+        />
       </CardContainer>
       <Footer
         disabled={disabled}
         title={footerTitle}
         hyperlinkTitle={disabled || isSelectedCard ? "" : "купи"}
+        onClick = {() => onClickCard(setSelectOnCard, disabled, isActiveSelectOnCard)}
       />
     </CardWrapper>
   );

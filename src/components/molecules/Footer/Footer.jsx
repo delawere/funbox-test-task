@@ -12,13 +12,11 @@ const Hyperlink = styled.a`
   color: #1698d9;
   border-bottom: 1px dashed;
   cursor: pointer;
-  -webkit-transition: color 1s ease-in-out;
-  -o-transition: color 1s ease-in-out;
   transition: color 1s ease-in-out;
 `;
 
-const Footer = ({ title, hyperlinkTitle, selected, disabled }) => (
-  <FooterContainer disabled={disabled}>
+const Footer = ({ title, hyperlinkTitle, selected, disabled, onClick }) => (
+  <FooterContainer disabled={disabled} onClick = {onClick}>
     {title} <Hyperlink>{hyperlinkTitle}</Hyperlink>
   </FooterContainer>
 );
