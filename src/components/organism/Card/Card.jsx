@@ -4,7 +4,8 @@ import styled from "styled-components";
 import Circle from "../../molecules/Circle/Circle";
 import Footer from "../../molecules/Footer/Footer";
 
-const CardSection = styled.section`
+const CardSection = styled.li`
+  display: block;
   @media (min-width: 320px) and (max-width: 480px) {
     margin-bottom: 40px;
   }
@@ -242,11 +243,14 @@ const Card = ({
         </CardContainer>
       </CardWrapper>
       <Footer
-          disabled={disabled}
-          title={footerTitle}
-          hyperlinkTitle={disabled || isSelectedCard ? "" : "купи"}
-          onClick={() => {setActiveSelect(true); setSelectOnCard(true)}}
-        />
+        disabled={disabled}
+        title={footerTitle}
+        hyperlinkTitle={disabled || isSelectedCard ? "" : "купи"}
+        onClick={() => {
+          setActiveSelect(true);
+          setSelectOnCard(true);
+        }}
+      />
     </CardSection>
   );
 };

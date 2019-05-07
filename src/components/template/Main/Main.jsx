@@ -21,7 +21,8 @@ const MainContainer = styled.main`
   }
 `;
 
-const CardsSection = styled.div`
+const CardsSection = styled.ul`
+  list-style-type: none;
   width: 1120px;
   margin: 0 auto;
   display: flex;
