@@ -13,17 +13,27 @@ const MainContainer = styled.main`
   align-items: center;
   align-content: center;
   justify-content: center;
-  background-color: black;
-  background-image: url("./pattern.png");
+  background-color: transparent;
   overflow: hidden;
+
+  @media (min-width: 320px) and (max-width: 480px) {
+    height: 100%;
+  }
 `;
 
 const CardsSection = styled.div`
   width: 1120px;
   margin: 0 auto;
-  margin-top: 68px;
   display: flex;
   justify-content: space-between;
+
+  @media (min-width: 320px) and (max-width: 480px) {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+  }
 `;
 
 const data = [
@@ -57,8 +67,9 @@ const Main = () => (
   <MainContainer>
     <Title />
     <CardsSection>
-      {data.map(card => (
+      {data.map((card, i) => (
         <Card
+          key={i}
           disabled={card.disabled}
           eatName={card.eatName}
           portionCount={card.portionCount}

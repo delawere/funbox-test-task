@@ -1,10 +1,16 @@
 import React from "react";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import Circle from "../../molecules/Circle/Circle";
 import Footer from "../../molecules/Footer/Footer";
 
-const CardWrapper = styled.section``;
+const CardSection = styled.section`
+  @media (min-width: 320px) and (max-width: 480px) {
+    margin-bottom: 40px;
+  }
+`;
+
+const CardWrapper = styled.div``;
 
 const CardContainer = styled.div`
   position: relative;
@@ -182,64 +188,66 @@ const Card = ({
   const [isHover, setHover] = useState(false);
   const footerTitle = getFooterTitle(isSelectedCard, disabled, eatName);
   return (
-    <CardWrapper
-      onMouseOut={() => {
-        setHover(false);
-        if (isSelectedCard) {
-          setActiveSelect(true);
-        } else {
-          setActiveSelect(false);
-        }
-      }}
-      onMouseOver={() => setHover(true)}
-      onClick={() => {
-        onClickCard(setSelectOnCard, disabled, isActiveSelectOnCard);
-      }}
-    >
-      <CardContainer selected={isActiveSelectOnCard} disabled={disabled}>
-        <Border width="440" height="440">
-          <path
-            d="M2,80 v-20 l40,-37 l266,0 a10,10 0 0 1 10,10 v32"
-            fill="none"
-            stroke={
-              disabled
-                ? "#B3B3B3"
-                : isActiveSelectOnCard
-                ? "#D91667"
-                : "#2ea8e6"
-            }
-            stroke-width="4"
+    <CardSection>
+      <CardWrapper
+        onMouseOut={() => {
+          setHover(false);
+          if (isSelectedCard) {
+            setActiveSelect(true);
+          } else {
+            setActiveSelect(false);
+          }
+        }}
+        onMouseOver={() => setHover(true)}
+        onClick={() => {
+          onClickCard(setSelectOnCard, disabled, isActiveSelectOnCard);
+        }}
+      >
+        <CardContainer selected={isActiveSelectOnCard} disabled={disabled}>
+          <Border width="440" height="440">
+            <path
+              d="M2,80 v-20 l40,-37 l266,0 a10,10 0 0 1 10,10 v32"
+              fill="none"
+              stroke={
+                disabled
+                  ? "#B3B3B3"
+                  : isActiveSelectOnCard
+                  ? "#D91667"
+                  : "#2ea8e6"
+              }
+              strokeWidth="4"
+            />
+          </Border>
+          <Filter disabled={disabled} />
+          <CardEatDesc hover={isHover} selected={isActiveSelectOnCard}>
+            {isHover && isActiveSelectOnCard
+              ? HeaderTitles.selected
+              : HeaderTitles.default}
+          </CardEatDesc>
+          <CardTitle>Нямушка</CardTitle>
+          <CardEatName>c {eatName}</CardEatName>
+          <CardEatInfo>
+            <Paragraph>{portionCount} порций</Paragraph>
+            <Paragraph>
+              {mouseCount}{" "}
+              {getDeclOfNumber(mouseCount, ["мышь", "мыши", "мышей"])} в подарок
+            </Paragraph>
+            <Paragraph>{additional}</Paragraph>
+          </CardEatInfo>
+          <Circle
+            eatWeight={eatWeight}
+            selected={isActiveSelectOnCard}
+            disabled={disabled}
           />
-        </Border>
-        <Filter disabled={disabled} />
-        <CardEatDesc hover={isHover} selected={isActiveSelectOnCard}>
-          {isHover && isActiveSelectOnCard
-            ? HeaderTitles.selected
-            : HeaderTitles.default}
-        </CardEatDesc>
-        <CardTitle>Нямушка</CardTitle>
-        <CardEatName>c {eatName}</CardEatName>
-        <CardEatInfo>
-          <Paragraph>{portionCount} порций</Paragraph>
-          <Paragraph>
-            {mouseCount}{" "}
-            {getDeclOfNumber(mouseCount, ["мышь", "мыши", "мышей"])} в подарок
-          </Paragraph>
-          <Paragraph>{additional}</Paragraph>
-        </CardEatInfo>
-        <Circle
-          eatWeight={eatWeight}
-          selected={isActiveSelectOnCard}
-          disabled={disabled}
-        />
-      </CardContainer>
+        </CardContainer>
+      </CardWrapper>
       <Footer
-        disabled={disabled}
-        title={footerTitle}
-        hyperlinkTitle={disabled || isSelectedCard ? "" : "купи"}
-        onClick = {() => onClickCard(setSelectOnCard, disabled, isActiveSelectOnCard)}
-      />
-    </CardWrapper>
+          disabled={disabled}
+          title={footerTitle}
+          hyperlinkTitle={disabled || isSelectedCard ? "" : "купи"}
+          onClick={() => {setActiveSelect(true); setSelectOnCard(true)}}
+        />
+    </CardSection>
   );
 };
 
