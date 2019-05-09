@@ -1,13 +1,16 @@
 import React from "react";
 import styled from "styled-components";
 import Card from "../../organism/Card/Card";
-import Title from "../../molecules/Title/Title";
+import Title from "../../atoms/Title/Title";
 import "../../../App.css";
 
 const MainContainer = styled.main`
   font-family: Trebuchet MS;
-  width: 100vw;
+  width: 100%;
+  max-width: 1120px;
   height: 100vh;
+  margin: 0 auto;
+  padding: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -16,19 +19,19 @@ const MainContainer = styled.main`
   background-color: transparent;
   overflow: hidden;
 
-  @media (min-width: 320px) and (max-width: 480px) {
+  @media (min-width: 320px) and (max-width: 980px) {
     height: 100%;
   }
 `;
 
 const CardsSection = styled.ul`
   list-style-type: none;
-  width: 1120px;
-  margin: 0 auto;
+  width: 100%;
+  padding: 0;
   display: flex;
   justify-content: space-between;
 
-  @media (min-width: 320px) and (max-width: 480px) {
+  @media (min-width: 320px) and (max-width: 980px) {
     width: 100%;
     flex-direction: column;
     align-items: center;

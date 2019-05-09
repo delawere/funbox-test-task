@@ -1,10 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 
-const FooterContainer = styled.footer`
+const Container = styled.footer`
   font-size: 13px;
-  padding: 13px 0;
+  font-weight: 500;
+  margin: 15px 0;
+  box-sizing: border-box;
+  overflow: hidden;
   text-align: center;
+  letter-spacing: 0.025px;
   color: ${props => (props.disabled ? "#FFFF66" : "white")};
 `;
 
@@ -16,9 +20,9 @@ const Hyperlink = styled.a`
 `;
 
 const Footer = ({ title, hyperlinkTitle, selected, disabled, onClick }) => (
-  <FooterContainer disabled={disabled} onClick = {onClick}>
-    {title} <Hyperlink>{hyperlinkTitle}</Hyperlink>
-  </FooterContainer>
+  <Container disabled={disabled} onClick={onClick}>
+    {title} <Hyperlink href="#">{hyperlinkTitle}</Hyperlink>
+  </Container>
 );
 
 export default Footer;

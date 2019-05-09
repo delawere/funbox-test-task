@@ -1,15 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 
-const CircleContainer = styled.div`
+const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   z-index: 10;
   position: absolute;
-  right: 20px;
-  bottom: 16px;
+  right: 11px;
+  bottom: 11px;
   width: 80px;
   height: 80px;
   border-radius: 50%;
@@ -18,7 +18,7 @@ const CircleContainer = styled.div`
   color: white;
   font-size: 42px;
   text-align: center;
-  line-height: 80px;
+  line-height: 60px;
 `;
 
 const Paragraph = styled.p`
@@ -29,10 +29,10 @@ const Paragraph = styled.p`
 `;
 
 const Circle = ({ eatWeight, selected, disabled }) => (
-  <CircleContainer selected={selected} disabled={disabled}>
+  <Container selected={selected} disabled={disabled}>
     <Paragraph largeFont={true}>{eatWeight}</Paragraph>
     <Paragraph>кг</Paragraph>
-  </CircleContainer>
+  </Container>
 );
 
 export default Circle;

@@ -3,26 +3,23 @@ import { useState } from "react";
 import styled from "styled-components";
 import Circle from "../../molecules/Circle/Circle";
 import Footer from "../../molecules/Footer/Footer";
+import Info from "../../molecules/Info/Info";
 
 const CardSection = styled.li`
-  display: block;
-  @media (min-width: 320px) and (max-width: 480px) {
-    margin-bottom: 40px;
+  @media (min-width: 320px) and (max-width: 980px) {
+    margin-bottom: 50px;
   }
 `;
-
-const CardWrapper = styled.div``;
 
 const CardContainer = styled.div`
   position: relative;
   width: 320px;
   box-sizing: border-box;
-  height: 460px;
+  height: 441px;
   padding: 0;
   margin: 0;
-  margin-top: 20px;
   padding-top: 21px;
-  padding-left: 46px;
+  padding-left: 43px;
   border-bottom-left-radius: 12px;
   border-bottom-right-radius: 12px;
   border: 4px solid
@@ -31,7 +28,7 @@ const CardContainer = styled.div`
   border-top: none;
   background-color: white;
   background-image: url("./cat.png");
-  background-position: -24px 208px;
+  background-position: -27px 168px;
   background-repeat: no-repeat;
   background-size: 368px 360px;
   cursor: pointer;
@@ -71,45 +68,32 @@ const Filter = styled.div`
   border-radius: 12px;
 `;
 
-const CardTitle = styled.h2`
+const Title = styled.h2`
   font-size: 48px;
+  letter-spacing: 2px;
   line-height: 0;
   margin: 0;
-  margin-top: 7px;
+  margin-top: 14px;
   padding: 0;
   margin-bottom: 6px;
 `;
 
-const CardEatName = styled.p`
+const Name = styled.p`
   margin: 0;
   padding: 0;
-  margin-top: 22px;
+  margin-top: 26px;
   font-size: 24px;
   font-family: Trebuchet MS Bold;
+  letter-spacing: 0.35px;
 `;
 
-const CardEatInfo = styled.div`
-  margin: 0;
-  padding: 0;
-  margin-top: 43px;
-  font-size: 14px;
-  line-height: 16px;
-  color: #666;
-`;
-
-const CardEatDesc = styled.p`
+const Header = styled.p`
   z-index: 3;
   position: absolute;
   font-size: 16px;
-  color: ${props => (props.hover && props.selected ? "#D91667" : "#d8d8d8")};
-  top: -37px;
-  left: 48px;
-`;
-
-const Paragraph = styled.p`
-  margin: 0;
-  padding: 0;
-  line-height: inherit;
+  color: ${props => (props.hover && props.selected ? "#D91667" : "#666")};
+  top: -33px;
+  left: 45px;
 `;
 
 const Border = styled.svg`
@@ -120,16 +104,16 @@ const Border = styled.svg`
 `;
 
 const FooterTitles = {
-  default: "Чего сидишь? Порадуй котэ",
+  default: "Чего сидишь? Порадуй котэ,",
   selected: {
-    foieGras: "Печень утки разварная с артишоками",
-    fish: "Головы щучьи с чесноком да свежайшая семгушка",
-    chicken: "Филе из цыплят с трюфелями в бульоне"
+    foieGras: "Печень утки разварная с артишоками.",
+    fish: "Головы щучьи с чесноком да свежайшая семгушка.",
+    chicken: "Филе из цыплят с трюфелями в бульоне."
   }
 };
 
 const HeaderTitles = {
-  default: "Сказочные заморские яства",
+  default: "Сказочное заморское яство",
   selected: "Котэ не одобряет?"
 };
 
@@ -163,15 +147,6 @@ const getFooterTitle = (isSelected, isDisabled, eatName) => {
   }
 };
 
-const getDeclOfNumber = (number, titles) => {
-  const cases = [2, 0, 1, 1, 1, 2];
-  return titles[
-    number % 100 > 4 && number % 100 < 20
-      ? 2
-      : cases[number % 10 < 5 ? number % 10 : 5]
-  ];
-};
-
 const onClickCard = (action, disabled, activeSelect) => {
   if (!disabled) action(!activeSelect);
 };
@@ -190,7 +165,7 @@ const Card = ({
   const footerTitle = getFooterTitle(isSelectedCard, disabled, eatName);
   return (
     <CardSection>
-      <CardWrapper
+      <div
         onMouseOut={() => {
           setHover(false);
           if (isSelectedCard) {
@@ -207,7 +182,7 @@ const Card = ({
         <CardContainer selected={isActiveSelectOnCard} disabled={disabled}>
           <Border width="440" height="440">
             <path
-              d="M2,80 v-20 l40,-37 l266,0 a10,10 0 0 1 10,10 v32"
+              d="M2,75 v-14 l38,-38 l268,0 a10,10 0 0 1 10,10 v32"
               fill="none"
               stroke={
                 disabled
@@ -220,32 +195,29 @@ const Card = ({
             />
           </Border>
           <Filter disabled={disabled} />
-          <CardEatDesc hover={isHover} selected={isActiveSelectOnCard}>
+          <Header hover={isHover} selected={isActiveSelectOnCard}>
             {isHover && isActiveSelectOnCard
               ? HeaderTitles.selected
               : HeaderTitles.default}
-          </CardEatDesc>
-          <CardTitle>Нямушка</CardTitle>
-          <CardEatName>c {eatName}</CardEatName>
-          <CardEatInfo>
-            <Paragraph>{portionCount} порций</Paragraph>
-            <Paragraph>
-              {mouseCount}{" "}
-              {getDeclOfNumber(mouseCount, ["мышь", "мыши", "мышей"])} в подарок
-            </Paragraph>
-            <Paragraph>{additional}</Paragraph>
-          </CardEatInfo>
+          </Header>
+          <Title>Нямушка</Title>
+          <Name>c {eatName}</Name>
+          <Info
+            portionCount={portionCount}
+            mouseCount={mouseCount}
+            additional={additional}
+          />
           <Circle
             eatWeight={eatWeight}
             selected={isActiveSelectOnCard}
             disabled={disabled}
           />
         </CardContainer>
-      </CardWrapper>
+      </div>
       <Footer
         disabled={disabled}
         title={footerTitle}
-        hyperlinkTitle={disabled || isSelectedCard ? "" : "купи"}
+        hyperlinkTitle={disabled || isSelectedCard ? "" : "купи."}
         onClick={() => {
           setActiveSelect(true);
           setSelectOnCard(true);
