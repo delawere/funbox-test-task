@@ -39,7 +39,7 @@ const CardContainer = styled.div`
 
   :hover {
     border-color: ${props =>
-      props.disabled ? "#B3B3B3" : props.selected ? "#E52E7A" : "#2ea8e6"};
+      props.disabled ? "#B3B3B3" : props.selected ? "#E52E7A" : "#2EA8E6"};
   }
 
   ::before {
@@ -220,6 +220,7 @@ const Card = ({
             eatWeight={eatWeight}
             selected={isActiveSelectOnCard}
             disabled={disabled}
+            hover={isHover}
           />
         </CardContainer>
       </div>

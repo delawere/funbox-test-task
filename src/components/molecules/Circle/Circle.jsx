@@ -14,7 +14,7 @@ const Container = styled.div`
   height: 80px;
   border-radius: 50%;
   background-color: ${props =>
-    props.disabled ? "#b3b3b3" : props.selected ? "#D91667" : "#1698d9"};
+    props.disabled ? "#b3b3b3" : props.selected ? "#D91667" : props.hover ? "#2EA8E6" : "#1698d9"};
   color: white;
   font-size: 42px;
   text-align: center;
@@ -28,8 +28,8 @@ const Paragraph = styled.p`
   line-height: ${props => (props.largeFont ? "42px" : "20px")};
 `;
 
-const Circle = ({ eatWeight, selected, disabled }) => (
-  <Container selected={selected} disabled={disabled}>
+const Circle = ({ eatWeight, selected, disabled, hover }) => (
+  <Container selected={selected} disabled={disabled} hover={hover}>
     <Paragraph largeFont={true}>{eatWeight}</Paragraph>
     <Paragraph>кг</Paragraph>
   </Container>
