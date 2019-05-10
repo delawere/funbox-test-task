@@ -5,6 +5,10 @@ import Circle from "../../molecules/Circle/Circle";
 import Footer from "../../molecules/Footer/Footer";
 import Info from "../../molecules/Info/Info";
 
+const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(
+  navigator.userAgent
+);
+
 const CardSection = styled.li`
   @media (min-width: 320px) and (max-width: 980px) {
     margin-bottom: 50px;
@@ -91,7 +95,8 @@ const Header = styled.p`
   z-index: 3;
   position: absolute;
   font-size: 16px;
-  color: ${props => (props.hover && props.selected ? "#D91667" : "#666")};
+  color: ${props =>
+    props.hover && props.selected && !isMobileDevice ? "#D91667" : "#666"};
   top: -33px;
   left: 45px;
 `;
@@ -147,8 +152,8 @@ const getFooterTitle = (isSelected, isDisabled, eatName) => {
   }
 };
 
-const onClickCard = (action, disabled, activeSelect) => {
-  if (!disabled) action(!activeSelect);
+const onClickCard = (action, disabled, state) => {
+  if (!disabled) action(!state);
 };
 
 const Card = ({
@@ -176,7 +181,11 @@ const Card = ({
         }}
         onMouseOver={() => setHover(true)}
         onClick={() => {
-          onClickCard(setSelectOnCard, disabled, isActiveSelectOnCard);
+          onClickCard(
+            isMobileDevice ? setActiveSelect : setSelectOnCard,
+            disabled,
+            isActiveSelectOnCard
+          );
         }}
       >
         <CardContainer selected={isActiveSelectOnCard} disabled={disabled}>
@@ -196,7 +205,7 @@ const Card = ({
           </Border>
           <Filter disabled={disabled} />
           <Header hover={isHover} selected={isActiveSelectOnCard}>
-            {isHover && isActiveSelectOnCard
+            {isHover && isActiveSelectOnCard && !isMobileDevice
               ? HeaderTitles.selected
               : HeaderTitles.default}
           </Header>
