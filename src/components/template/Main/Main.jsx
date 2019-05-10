@@ -30,6 +30,7 @@ const CardsSection = styled.ul`
   padding: 0;
   display: flex;
   justify-content: space-between;
+  min-height: 487px;
 
   @media (min-width: 320px) and (max-width: 980px) {
     width: 100%;

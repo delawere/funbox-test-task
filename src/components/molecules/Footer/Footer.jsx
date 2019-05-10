@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const Container = styled.footer`
   font-size: 13px;
-  font-weight: 500;
+  font-weight: 400;
   margin: 15px 0;
   box-sizing: border-box;
   overflow: hidden;
@@ -13,6 +13,9 @@ const Container = styled.footer`
 `;
 
 const Hyperlink = styled.a`
+  text-decoration: none;
+  z-index: 10;
+  display: inline-block;
   color: #1698d9;
   border-bottom: 1px dashed;
   cursor: pointer;
