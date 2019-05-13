@@ -12,9 +12,9 @@ const Container = styled.footer`
   color: ${props => (props.disabled ? "#FFFF66" : "white")};
 `;
 
-const Hyperlink = styled.a`
+const Hyperlink = styled.span`
   text-decoration: none;
-  z-index: 10;
+  z-index: 999;
   display: inline-block;
   color: #1698d9;
   border-bottom: 1px dashed;
@@ -24,7 +24,7 @@ const Hyperlink = styled.a`
 
 const Footer = ({ title, hyperlinkTitle, selected, disabled, onClick }) => (
   <Container disabled={disabled} onClick={onClick}>
-    {title} <Hyperlink href="#">{hyperlinkTitle}</Hyperlink>
+    {title} <Hyperlink>{hyperlinkTitle}</Hyperlink>
   </Container>
 );
 

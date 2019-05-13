@@ -1,46 +1,20 @@
-body {
-  background-image: url("./Pattern.png");
-  position: relative;
-}
-
-body::before,
-body::after {
-  position: absolute;
-  z-index: -1;
-  width: 100%;
-  height: 200px;
-  content: "";
-}
-
-body::before {
-  top: 0;
-  left: 0;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
-}
-
-body::after {
-  bottom: 0;
-  left: 0;
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
-}
-
 @font-face {
-  font-family: "Trebuchet MS";
-  src: url("../src/fonts/TrebuchetMS.woff") format("woff");
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Trebuchet MS Bold";
-  src: url("../src/fonts/TrebuchetMS-Bold.woff") format("woff");
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Exo";
-  src: url("../src/fonts/Exo2.0-Thin.woff") format("woff");
-  font-weight: normal;
-  font-style: normal;
-}
+    font-family: "Trebuchet MS";
+    src: url("../src/fonts/TrebuchetMS.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: "Trebuchet MS Bold";
+    src: url("../src/fonts/TrebuchetMS-Bold.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: "Exo";
+    src: url("../src/fonts/Exo2.0-Thin.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+  }

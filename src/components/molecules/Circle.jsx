@@ -14,7 +14,13 @@ const Container = styled.div`
   height: 80px;
   border-radius: 50%;
   background-color: ${props =>
-    props.disabled ? "#b3b3b3" : props.selected ? "#D91667" : props.hover ? "#2EA8E6" : "#1698d9"};
+    props.disabled
+      ? "#b3b3b3"
+      : props.selected
+      ? "#D91667"
+      : props.hover
+      ? "#2EA8E6"
+      : "#1698d9"};
   color: white;
   font-size: 42px;
   text-align: center;

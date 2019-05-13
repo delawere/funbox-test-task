@@ -1,9 +1,9 @@
 import React from "react";
 import { useState } from "react";
 import styled from "styled-components";
-import Circle from "../../molecules/Circle/Circle";
-import Footer from "../../molecules/Footer/Footer";
-import Info from "../../molecules/Info/Info";
+import Circle from "../molecules/Circle";
+import Footer from "../molecules/Footer";
+import Info from "../molecules/Info";
 
 const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(
   navigator.userAgent
