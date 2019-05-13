@@ -115,7 +115,7 @@ const Level1Page = () => (
             <div>
               <Bold>{`${i + 1}. ${it[0]}`}</Bold>
               <MarkedList>
-                {it[1].map((item, j)=> (
+                {it[1].map((item, j) => (
                   <li key={j}>
                     <Bold>{item[0]}</Bold>
                     <Regular>{item[1]}</Regular>
