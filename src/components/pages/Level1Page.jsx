@@ -105,7 +105,7 @@ const Level1Page = () => (
     <Title>Level 1</Title>
     <List>
       {data.map((it, i) => (
-        <ListItem>
+        <ListItem key={i}>
           {typeof it[1] === "string" ? (
             <div>
               <Bold>{`${i + 1}. ${it[0]}`}</Bold>
@@ -115,8 +115,8 @@ const Level1Page = () => (
             <div>
               <Bold>{`${i + 1}. ${it[0]}`}</Bold>
               <MarkedList>
-                {it[1].map(item => (
-                  <li>
+                {it[1].map((item, j) => (
+                  <li key={j}>
                     <Bold>{item[0]}</Bold>
                     <Regular>{item[1]}</Regular>
                   </li>
