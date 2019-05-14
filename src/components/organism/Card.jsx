@@ -172,6 +172,7 @@ const Card = ({
     <CardSection>
       <div
         onMouseOut={() => {
+          if (isMobileDevice) return;
           setHover(false);
           if (isSelectedCard) {
             setActiveSelect(true);
