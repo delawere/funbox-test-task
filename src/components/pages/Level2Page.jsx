@@ -33,7 +33,7 @@ const Wrapper = styled.div`
 `;
 
 const MainContainer = styled.main`
-  font-family: Trebuchet MS;
+  font-family: Trebuchet MS, Helvetica, sans-serif;
   z-index: 1;
   width: 100%;
   max-width: 1120px;

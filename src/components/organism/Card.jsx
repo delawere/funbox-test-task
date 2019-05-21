@@ -87,7 +87,7 @@ const Name = styled.p`
   padding: 0;
   margin-top: 26px;
   font-size: 24px;
-  font-family: Trebuchet MS Bold;
+  font-family: Trebuchet MS Bold, Helvetica, sans-serif;
   letter-spacing: 0.35px;
 `;
 
