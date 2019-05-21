@@ -3,8 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@babel/preset-env": "^7.4.4",
-    "babel-loader": "^8.0.5",
     "normalize.css": "^8.0.1",
     "react": "^16.8.6",
     "react-app-polyfill": "^1.0.0",
@@ -26,8 +24,5 @@
   "browserslist": [
     "ie 11",
     "not op_mini all"
-  ],
-  "devDependencies": {
-    "@babel/core": "^7.4.4"
-  }
+  ]
 }
