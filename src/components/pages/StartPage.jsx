@@ -10,6 +10,8 @@ const Wrapper = styled.main`
   display: flex;
   align-items: center;
   justify-content: center;
+  background: url("./cat.png") no-repeat -9999px -9999px,
+              url(./Pattern.png) no-repeat -9999px -9999px;
 `;
 
 const List = styled.ul`
